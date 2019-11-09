@@ -15,26 +15,25 @@
 <header class="masthead">
   <div class="container h-100">
       <div class="row h-100 align-items-center justify-content-center text-center">
-      <div class="col-lg-10 align-self-end">
-          <h1 class="text-uppercase text-white font-weight-bold">{{ board.subject }}</h1>
-          <hr class="divider my-4">
-      </div>
-      <div class="col-lg-8 align-self-baseline">
-          <p class="text-white-75 font-weight-light mb-5"> {{ board.paragraph }} </p>
-      </div>
+        <div class="col-lg-10 align-self-end mb-4">
+            <h1 class="text-uppercase text-white-75 font-weight-light">{{ board.subject }}</h1>
+        </div>
+        <div class="col-lg-8 align-self-baseline">
+            <h4 class="text-w text-white-75 font-weight-light mb-5"> {{ board.paragraph }} </h4>
+        </div>
       </div>
   </div>
 </header>
 
 <!-- 말씀 Section -->
-<section class="page-section bg-secondary" id="about">
+<section class="page-section bg-dark" id="word">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
-        <h2 class="text-white text-center mt-0">말씀</h2>
-        <hr class="divider light my-4">
+        <h2 class="text-white-75 text-center mt-0">말씀</h2>
+        <hr class="divider my-4">
         {% for node in word %}
-          <p class="text-white mb-4">{{ node.message }}</p>
+          <p class="text-white-75 mb-4">{{ node.message }}</p>
         {% endfor %}
       </div>
     </div>
@@ -42,16 +41,16 @@
 </section>
 
 <!-- 묵상 Section -->
-<section class="page-section bg-warning" id="services">
+<section class="page-section bg-dark" id="contemplation">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
-        <h2 class="text-white text-center mt-0">묵상</h2>
-        <hr class="divider light my-4">
+        <h2 class="text-white-75 text-center mt-0">묵상</h2>
+        <hr class="divider my-4">
         <form style="width:100%;">
           {% for question in contemplation %}
             <div class="form-group">
-              <label for="exampleFormControlTextarea1">{{ question.message }}</label>
+              <label for="exampleFormControlTextarea1" class="text-white-75">{{ question.message }}</label>
               <textarea class="form-control" id="question" rows="4"></textarea>
             </div>
             <br />
@@ -63,38 +62,40 @@
 </section>
 
 <!-- 길잡이 Section -->
-<section class="page-section bg-info" id="contact">
+<section class="page-section bg-dark" id="guide">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
-        <h2 class="text-white text-center mt-0">길잡이</h2>
+        <h2 class="text-white-75 text-center mt-0">길잡이</h2>
         <hr class="divider my-4">
-        <p>{{ board.guide }}</p>
+        <p class="text-white-75">{{ board.guide }}</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- 중보기도 Section -->
-<section class="page-section bg-danger" id="pray">
+<section class="page-section bg-dark" id="pray">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
-        <h2 class="text-white text-center mt-0">중보기도</h2>
-        <hr class="divider light my-4">
+        <h2 class="text-white-75 text-center mt-0">중보기도</h2>
+        <hr class="divider my-4">
         {% for node in prayer %}
-          <p class="text-white mb-4">{{ node.message }}</p>
+          <p class="text-white-75 mb-4">{{ node.message }}</p>
         {% endfor %}
       </div>
     </div>
   </div>
 </section>
 
-<section class="page-section bg-dark" id="pray" style="padding: 2rem;">
+<section class="page-section bg-dark" id="snapshot" style="padding: 2rem;">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10 text-center">
-        <button id="snapshot" onclick="Snapshot.takeShot();">찰칵!</button>
+        <button id="snapshot" class="btn btn-block btn-warning" onclick="Snapshot.takeShot();">
+          <i class='fa fa-camera-retro fa-2x'></i>
+        </button>
       </div>
     </div>
   </div>
