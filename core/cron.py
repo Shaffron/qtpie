@@ -35,26 +35,26 @@ def daily_crawling():
         logger.exception(e)
 
 def _save_linked_data(board, payload):
-    targets = (
-        ('annotations', Annotation),
-        ('contemplations', Contemplation),
-        ('praises', Prayer),
-        ('words', Word)
+    models = (
+        Annotation,
+        Contemplation,
+        Prayer,
+        Word
     )
 
-    for target, Model in targets:
+    for model in models:
         bulk = []
-        dataset = payload[target]
+        dataset = payload[model.__name__]
 
         for index, message in enumerate(dataset):
             bulk.append(
-                Model(
+                model(
                     board=board,
                     message=message,
                     order=index
                 )
             )
 
-        Model.objects.bulk_create(bulk)
+        model.objects.bulk_create(bulk)
 
         return
