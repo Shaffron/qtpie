@@ -4,22 +4,6 @@ import requests
 from bs4 import BeautifulSoup
 
 
-"""
-하나님 주님과 함께하는 큐티가 제 일상에 녹아들길 소망합니다.
-하나님 이 프로젝트를 통해 제 실력을 쌓는것에 집중하기보다 하나님과
-어떻게 더 소통할 수 있을지 묻고 듣게 인도하소서
-제 손과 머리를 움직여주시는 하나님 감사합니다.
-
-딕셔러니화 시킬것들
-1. 주제
-2. 성경읽기
-3. 묵상항목들
-4. 길잡이
-5. 기도제목
-"""
-
-
-
 class QTCrawler:
     URL = 'http://www.365qt.com/TodaysQT.asp'
 
@@ -49,12 +33,12 @@ class QTCrawler:
 
         parsed = dict()
         parsed['subject'] = cls._parse_subject(cls, body)
-        parsed['annotations'] = cls._parse_annotation(cls, body)
-        parsed['contemplations'] = cls._parse_contemplation(cls, body)
+        parsed['annotation'] = cls._parse_annotation(cls, body)
+        parsed['contemplation'] = cls._parse_contemplation(cls, body)
         parsed['guide'] = cls._parse_guide(cls, body)
         parsed['page'] = cls._parse_page(cls, body)
-        parsed['praises'] = cls._parse_praise(cls, body)
-        parsed['words'] = cls._parse_word(cls, body)
+        parsed['prayer'] = cls._parse_praise(cls, body)
+        parsed['word'] = cls._parse_word(cls, body)
 
         return parsed
 

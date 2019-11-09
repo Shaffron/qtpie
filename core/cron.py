@@ -43,8 +43,8 @@ def _save_linked_data(board, payload):
     )
 
     for model in models:
-        bulk = []
-        dataset = payload[model.__name__]
+        bulk = list()
+        dataset = payload[model.__name__.lower()]
 
         for index, message in enumerate(dataset):
             bulk.append(
@@ -57,4 +57,4 @@ def _save_linked_data(board, payload):
 
         model.objects.bulk_create(bulk)
 
-        return
+    return
