@@ -1,4 +1,5 @@
 import logging
+from datetime import datetime
 
 from django.shortcuts import render
 from django.views import View
@@ -22,7 +23,10 @@ class Contemplate(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        board = Board.objects.get(id=kwargs.get('date'))
+        # date 계산
+        date = kwargs['date'] if 'date' in kwargs else datetime.now().strftime('%Y%m%d')
+
+        board = Board.objects.get(id=date)
         context['board'] = board
 
         models = (
@@ -33,9 +37,7 @@ class Contemplate(TemplateView):
         )
 
         for model in models:
-            key = model.__name__.lower()
-
-            context[key] = (
+            context[model.__name__.lower()] = (
                 model
                 .objects
                 .filter(board_id=board.id)
