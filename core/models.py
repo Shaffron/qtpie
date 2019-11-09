@@ -30,23 +30,6 @@ class Board(models.Model):
         verbose_name_plural = verbose_name
 
 
-class Bible(models.Model):
-    category = models.IntegerField()
-    book = models.IntegerField()
-    chapter = models.IntegerField()
-    paragraph = models.IntegerField()
-    sentence = models.IntegerField()
-    testament = models.CharField(max_length=500)
-    long_label = models.CharField(max_length=10)
-    short_label = models.CharField(max_length=2)
-
-    class Meta:
-        db_table = 'bible'
-        verbose_name = '성경'
-        verbose_name_plural = verbose_name
-        index_together = ['paragraph', 'sentence', 'long_label']
-
-
 class Contemplation(models.Model):
     board = models.ForeignKey(Board, on_delete=models.CASCADE)
     message = models.CharField(max_length=200)

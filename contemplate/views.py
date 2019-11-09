@@ -8,7 +8,6 @@ from django.views.generic import TemplateView
 from core.models import (
     Annotation,
     Board,
-    Bible,
     Contemplation,
     Prayer,
     Word
