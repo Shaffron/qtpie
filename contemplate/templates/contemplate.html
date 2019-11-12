@@ -5,8 +5,9 @@
   <link href="{% static 'contemplate/css/custom.css' %}" rel="stylesheet" type='text/css'>
 {% endblock %}
 {% block js %}
-  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js" %}></script>
-  <script src="{% static 'contemplate/js/convert.js' %}"></script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <script src="{% static 'contemplate/js/domtoimage.js' %}"></script>
+  <script src="{% static 'contemplate/js/snapshot.js' %}"></script>
   <script src="{% static 'contemplate/js/snapshot.js' %}"></script>
 {% endblock %}
 
@@ -36,6 +37,13 @@
           <p class="text-white-75 mb-4">{{ node.message }}</p>
         {% endfor %}
       </div>
+      {% if annotation %}
+        <div class="col-lg-8 p-3" style="border: 2px solid lightblue; border-radius: 10px;">
+          {% for node in annotation %}
+            <p class="mb-4" style="color: lemonchiffon;">{{ node.message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
     </div>
   </div>
 </section>
@@ -51,7 +59,7 @@
           {% for question in contemplation %}
             <div class="form-group">
               <label for="exampleFormControlTextarea1" class="text-white-75">{{ question.message }}</label>
-              <textarea class="form-control" id="question" rows="4"></textarea>
+              <textarea class="form-control contemplate" id="question" rows="4"></textarea>
             </div>
             <br />
           {% endfor %}
@@ -92,9 +100,14 @@
 <section class="page-section bg-dark" id="snapshot" style="padding: 2rem;">
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-lg-10 text-center">
-        <button id="snapshot" class="btn btn-block btn-warning" onclick="Snapshot.takeShot();">
-          <i class='fa fa-camera-retro fa-2x'></i>
+      <div class="col-lg-10 btn-group d-flex" role="group">
+        <button class="btn btn-warning" onclick="Snapshot.takeShot();">
+          <i class="fa fa-camera-retro fa-2x"></i>
+          <i class="fa fa-eye fa-2x"></i>
+        </button>
+        <button class="btn btn-danger" onclick="Snapshot.takeBlurShot();">
+          <i class="fa fa-camera-retro fa-2x"></i>
+          <i class="fa fa-eye-slash fa-2x"></i>
         </button>
       </div>
     </div>

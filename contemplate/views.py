@@ -43,4 +43,6 @@ class Contemplate(TemplateView):
                 .order_by('order')
             )
 
+        logger.warning(context)
+
         return context
