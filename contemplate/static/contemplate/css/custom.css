@@ -1,15 +1,27 @@
+@font-face {
+    font-family: 'BMJUA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'BMJUA', 'NanumGothic', sans-serif;
+}
+
 body .page-section {
-    padding: 3.5rem 2rem !important;
+    padding: 3.5rem 2rem;
 }
 
 a.nav-link {
-    font-family: 'Jua' !important;
+    font-family: 'BMJUA' !important;
 }
 
 .container h1, h2, h3, h4 {
-    font-family: 'Jua';
+    font-family: 'BMJUA' !important;
 }
 
 hr.divider {
-    max-width: 100% !important;
+    max-width: 100%;
 }
+

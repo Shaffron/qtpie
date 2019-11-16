@@ -1,29 +1,59 @@
 var Snapshot = {
-    takeShot: () => {
-        let promise = Convert.convertHtmlToCanvas();
+    takeShot: function (blur=false) {
+        let targets = [
+            '#mainNav',
+            '#guide',
+            '#pray',
+            '#snapshot',
+            '#word'
+        ];
 
-        promise.then(canvas => {
-            let image = Convert.convertCanvasToImage(canvas);
-            Snapshot.downloadImage(image);
-        });
+        this.hideUncapturedArea(targets);
+
+        if (blur) {
+            var $elem = $('.contemplate');
+            this.blurContemplateArea($elem);
+        }
+
+        window.domtoimage
+            .toJpeg(document.getElementById('body'), { quality: 1 })
+            .then(dataUrl => {
+                console.log(dataUrl);
+                let link = document.createElement('a');
+                let today = moment().format('YYYYMMDD');
+                link.download = `Daily_QT_${today}.jpg`;
+                link.href = dataUrl;
+                link.click();
+            })
+            .finally(() => {
+                Snapshot.showUncapturedArea(targets);
+                if (blur) {
+                    Snapshot.clearContemplateArea($elem);
+                }
+            });
     },
 
-    takeBlurShot: () => {
-        let promise = Convert.convertHtmlToCanvas(true);
-
-        promise.then(canvas => {
-            let image = Convert.convertCanvasToImage(canvas);
-            Snapshot.downloadImage(image);
-        });
+    takeBlurShot: function () {
+        this.takeShot(blur=true);
     },
 
-    downloadImage: (image) => {
-        let link = document.createElement('a');
-        link.href = image;
-        link.download = 'TodayQT.png';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        delete link;
-    }
-}
+    hideUncapturedArea: function (targets) {
+        for (target of targets) {
+            $(target).hide();
+        }
+    },
+
+    showUncapturedArea: function (targets) {
+        for (target of targets) {
+            $(target).show();
+        }
+    },
+
+    blurContemplateArea: function ($elem) {
+        $elem.css('filter', 'blur(2px)');
+    },
+
+    clearContemplateArea: function ($elem) {
+        $elem.css('filter', '');
+    },
+};

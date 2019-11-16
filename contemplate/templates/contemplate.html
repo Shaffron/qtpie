@@ -5,10 +5,10 @@
   <link href="{% static 'contemplate/css/custom.css' %}" rel="stylesheet" type='text/css'>
 {% endblock %}
 {% block js %}
-  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="{% static 'contemplate/js/domtoimage.js' %}"></script>
   <script src="{% static 'contemplate/js/snapshot.js' %}"></script>
-  <script src="{% static 'contemplate/js/snapshot.js' %}"></script>
+  <script src="{% static 'contemplate/js/snapshot.js' %}"></script
 {% endblock %}
 
 {% block body %}
@@ -40,7 +40,7 @@
       {% if annotation %}
         <div class="col-lg-8 p-3" style="border: 2px solid lightblue; border-radius: 10px;">
           {% for node in annotation %}
-            <p class="mb-4" style="color: lemonchiffon;">{{ node.message }}</p>
+            <p class="mb-2" style="color: lemonchiffon;">{{ node.message }}</p>
           {% endfor %}
         </div>
       {% endif %}
@@ -103,11 +103,9 @@
       <div class="col-lg-10 btn-group d-flex" role="group">
         <button class="btn btn-warning" onclick="Snapshot.takeShot();">
           <i class="fa fa-camera-retro fa-2x"></i>
-          <i class="fa fa-eye fa-2x"></i>
         </button>
         <button class="btn btn-danger" onclick="Snapshot.takeBlurShot();">
           <i class="fa fa-camera-retro fa-2x"></i>
-          <i class="fa fa-eye-slash fa-2x"></i>
         </button>
       </div>
     </div>
