@@ -110,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ko-kr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
@@ -132,6 +132,6 @@ MEDIA_ROOT = 'media'
 
 # Crontab
 CRONJOBS = [
-    # 월~토 새벽 5시에 크롤링
-    ('0 5 * * 1-6', 'core.cron.daily_crawling'),
+    # 월~토 00:05 에 크롤링
+    ('5 0 * * 1-6', 'core.cron.daily_crawling'),
 ]
