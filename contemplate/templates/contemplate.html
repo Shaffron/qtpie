@@ -1,1 +1,114 @@
 {% extends 'base.html' %}
+
+{% load static %}
+{% block css %}
+  <link href="{% static 'contemplate/css/custom.css' %}" rel="stylesheet" type='text/css'>
+{% endblock %}
+{% block js %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="{% static 'contemplate/js/domtoimage.js' %}"></script>
+  <script src="{% static 'contemplate/js/snapshot.js' %}"></script>
+  <script src="{% static 'contemplate/js/snapshot.js' %}"></script
+{% endblock %}
+
+{% block body %}
+<!-- 주제 -->
+<header class="masthead">
+  <div class="container h-100">
+      <div class="row h-100 align-items-center justify-content-center text-center">
+        <div class="col-lg-10 align-self-end mb-4">
+            <h1 class="text-uppercase text-white-75 font-weight-light">{{ board.subject }}</h1>
+        </div>
+        <div class="col-lg-8 align-self-baseline">
+            <h4 class="text-w text-white-75 font-weight-light mb-5"> {{ board.paragraph }} </h4>
+        </div>
+      </div>
+  </div>
+</header>
+
+<!-- 말씀 Section -->
+<section class="page-section bg-dark" id="word">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <h2 class="text-white-75 text-center mt-0">말씀</h2>
+        <hr class="divider my-4">
+        {% for node in word %}
+          <p class="text-white-75 mb-4">{{ node.message }}</p>
+        {% endfor %}
+      </div>
+      {% if annotation %}
+        <div class="col-lg-8 p-3" style="border: 2px solid lightblue; border-radius: 10px;">
+          {% for node in annotation %}
+            <p class="mb-2" style="color: lemonchiffon;">{{ node.message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- 묵상 Section -->
+<section class="page-section bg-dark" id="contemplation">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <h2 class="text-white-75 text-center mt-0">묵상</h2>
+        <hr class="divider my-4">
+        <form style="width:100%;">
+          {% for question in contemplation %}
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1" class="text-white-75">{{ question.message }}</label>
+              <textarea class="form-control contemplate" id="question" rows="4"></textarea>
+            </div>
+            <br />
+          {% endfor %}
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 길잡이 Section -->
+<section class="page-section bg-dark" id="guide">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <h2 class="text-white-75 text-center mt-0">길잡이</h2>
+        <hr class="divider my-4">
+        <p class="text-white-75">{{ board.guide }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 중보기도 Section -->
+<section class="page-section bg-dark" id="pray">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <h2 class="text-white-75 text-center mt-0">중보기도</h2>
+        <hr class="divider my-4">
+        {% for node in prayer %}
+          <p class="text-white-75 mb-4">{{ node.message }}</p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page-section bg-dark" id="snapshot" style="padding: 2rem;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 btn-group d-flex" role="group">
+        <button class="btn btn-warning" onclick="Snapshot.takeShot();">
+          <i class="fa fa-camera-retro fa-2x"></i>
+        </button>
+        <button class="btn btn-danger" onclick="Snapshot.takeBlurShot();">
+          <i class="fa fa-camera-retro fa-2x"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

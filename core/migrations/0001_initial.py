@@ -28,26 +28,6 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='Bible',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('category', models.IntegerField()),
-                ('book', models.IntegerField()),
-                ('chapter', models.IntegerField()),
-                ('paragraph', models.IntegerField()),
-                ('sentence', models.IntegerField()),
-                ('testament', models.CharField(max_length=500)),
-                ('long_label', models.CharField(max_length=10)),
-                ('short_label', models.CharField(max_length=2)),
-            ],
-            options={
-                'verbose_name': '성경',
-                'verbose_name_plural': '성경',
-                'db_table': 'bible',
-                'index_together': {('paragraph', 'sentence', 'long_label')},
-            },
-        ),
-        migrations.CreateModel(
             name='Word',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),

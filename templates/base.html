@@ -5,164 +5,83 @@
 
 <head>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="{% static 'core/img/cross.ico' %}">
 
-  <title>QTPIE</title>
+    <title>QTPIE</title>
 
-  <!-- Font Awesome Icons -->
-  <link href="{% static 'core/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <!-- Font Awesome Icons -->
+    <link href="{% static 'core/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet">
-  <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <!-- Plugin CSS -->
+    <link href="{% static 'core/vendor/magnific-popup/magnific-popup.css' %}" rel="stylesheet">
 
-  <!-- Plugin CSS -->
-  <link href="{% static 'core/vendor/magnific-popup/magnific-popup.css' %}" rel="stylesheet">
+    <!-- Theme CSS - Includes Bootstrap -->
+    <link href="{% static 'core/css/creative.min.css' %}" rel="stylesheet">
 
-  <!-- Theme CSS - Includes Bootstrap -->
-  <link href="{% static 'core/css/creative.min.css' %}" rel="stylesheet">
-
+    <!-- Custom CSS -->
+    {% block css %}
+    {% endblock %}
 </head>
 
 <body id="page-top">
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">QTPIE  </a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto my-2 my-lg-0">
-        <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#page-top">주제</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">말씀</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#services">묵상</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#contact">길잡이</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#pray">기도</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Masthead -->
-  <header class="masthead">
-    <div class="container h-100">
-      <div class="row h-100 align-items-center justify-content-center text-center">
-        <div class="col-lg-10 align-self-end">
-          <h1 class="text-uppercase text-white font-weight-bold">{{ board.subject }}</h1>
-          <hr class="divider my-4">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">QTPIE</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#page-top">주제</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#word">말씀</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#contemplation">묵상</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#guide">길잡이</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#pray">기도</a>
+                </li>
+            </ul>
         </div>
-        <div class="col-lg-8 align-self-baseline">
-          <p class="text-white-75 font-weight-light mb-5"> {{ board.paragraph }} </p>
-        </div>
-      </div>
     </div>
-  </header>
+</nav>
 
-  <!-- About Section -->
-  <section class="page-section bg-secondary" id="about">
+<div id="body">
+    {% block body %}
+    {% endblock %}
+</div>
+
+<!-- Footer -->
+<footer class="bg-light py-5">
     <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <h2 class="text-white mt-0">말씀읽기</h2>
-          <hr class="divider light my-4">
-          {% for node in word %}
-            <p class="text-white mb-4">{{ node.message }}</p>
-          {% endfor %}
-        </div>
-      </div>
+        <div class="small text-center text-muted">Copyright &copy; 2019 - KimYoungJin</div>
     </div>
-  </section>
+</footer>
 
-  <!-- Services Section -->
-  <section class="page-section bg-warning" id="services">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <h2 class="text-white mt-0">묵상</h2>
-          <hr class="divider light my-4">
-          <form style="width:100%;">
-            {% for question in contemplation %}
-              <div class="form-group">
-                <label for="exampleFormControlTextarea1">{{ question.message }}</label>
-                <textarea class="form-control" id="question" rows="4"></textarea>
-              </div>
-              <br />
-            {% endfor %}
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'core/vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'core/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
-  <!-- Contact Section -->
-  <section class="page-section bg-info" id="contact">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8 text-center">
-          <h2 class="mt-0">길잡이</h2>
-          <hr class="divider my-4">
-          <p>{{ board.guide }}</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- Plugin JavaScript -->
+<script src="{% static 'core/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+<script src="{% static 'core/vendor/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
 
-  <!-- Contact Section -->
-  <section class="page-section bg-danger" id="pray">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <h2 class="text-white mt-0">중보기도</h2>
-          <hr class="divider light my-4">
-          {% for node in prayer %}
-            <p class="text-white mb-4">{{ node.message }}</p>
-          {% endfor %}
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- Custom scripts for this template -->
+<script src="{% static 'core/js/creative.min.js' %}"></script>
 
-  <section class="page-section bg-dark" id="pray" style="padding: 2rem;">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8 text-center">
-          <button>찰칵!</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-light py-5">
-    <div class="container">
-      <div class="small text-center text-muted">Copyright &copy; 2019 - Start Bootstrap</div>
-    </div>
-  </footer>
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="{% static 'core/vendor/jquery/jquery.min.js' %}"></script>
-  <script src="{% static 'core/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-
-  <!-- Plugin JavaScript -->
-  <script src="{% static 'core/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
-  <script src="{% static 'core/vendor/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
-
-  <!-- Custom scripts for this template -->
-  <script src="{% static 'core/js/creative.min.js' %}"></script>
+{% block js %}
+{% endblock %}
 
 </body>
 
