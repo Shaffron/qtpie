@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 ]
 
 MY_APPS = [
+    'account',
     'contemplate',
     'core',
 ]
