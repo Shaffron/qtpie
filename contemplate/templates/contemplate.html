@@ -2,13 +2,12 @@
 
 {% load static %}
 {% block css %}
-  <link href="{% static 'contemplate/css/custom.css' %}" rel="stylesheet" type='text/css'>
+  <link href="{% static 'contemplate/css/custom.css' %}?{{ settings.STATICFILES_VERSION }}" rel="stylesheet" type='text/css'>
 {% endblock %}
 {% block js %}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="{% static 'contemplate/js/domtoimage.js' %}"></script>
-  <script src="{% static 'contemplate/js/snapshot.js' %}"></script>
-  <script src="{% static 'contemplate/js/snapshot.js' %}"></script
+  <script src="{% static 'contemplate/js/snapshot.js' %}?{{ settings.STATICFILES_VERSION }}"></script>
 {% endblock %}
 
 {% block body %}
@@ -102,9 +101,14 @@
     <div class="row justify-content-center">
       <div class="col-lg-10 btn-group d-flex" role="group">
         <button class="btn btn-warning" onclick="Snapshot.takeShot();">
+          <i class="fa fa-eye fa-2x"></i>
+          <i class="fa fa-arrow-right fa-2x pl-5 pr-5"></i>
           <i class="fa fa-camera-retro fa-2x"></i>
+
         </button>
         <button class="btn btn-danger" onclick="Snapshot.takeBlurShot();">
+          <i class="fa fa-low-vision fa-2x"></i>
+          <i class="fa fa-arrow-right fa-2x pl-5 pr-5"></i>
           <i class="fa fa-camera-retro fa-2x"></i>
         </button>
       </div>
