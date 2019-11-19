@@ -74,6 +74,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django_settings_export.settings_export',
             ],
         },
     },
@@ -127,6 +128,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'core/static'),
 ]
 
+STATICFILES_VERSION = get_env_variable('STATICFILES_VERSION')
+
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = 'media'
@@ -135,4 +138,9 @@ MEDIA_ROOT = 'media'
 CRONJOBS = [
     # 월~토 00:05 에 크롤링
     ('5 0 * * 1-6', 'core.cron.daily_crawling'),
+]
+
+# Export settings for template
+SETTINGS_EXPORT = [
+    'STATICFILES_VERSION',
 ]
