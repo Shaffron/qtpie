@@ -136,7 +136,7 @@ MEDIA_ROOT = 'media'
 
 # Crontab
 CRONJOBS = [
-    # 월~토 00:05 에 크롤링
+    # crawling at monday ~ saturday 00:05 AM
     ('5 0 * * 1-6', 'core.cron.daily_crawling'),
 ]
 
@@ -144,3 +144,57 @@ CRONJOBS = [
 SETTINGS_EXPORT = [
     'STATICFILES_VERSION',
 ]
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'standard' : {
+            'format': '[%(asctime)s] [%(levelname)s] %(message)s (%(filename)s:%(lineno)d)',
+            'datefmt': '%Y-%m-%d %H:%M:%S'
+        }
+    },
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'standard',
+        },
+        'mail': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'formatter': 'standard',
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': f'{BASE_DIR}/logs/django.log',
+            'maxBytes': 10485760,
+            'backupCount': 10,
+            'formatter': 'standard',
+        },
+        'null': {
+            'level': 'DEBUG',
+            'class': 'logging.NullHandler'
+        }
+    },
+    'loggers': {
+        '': {
+            # root logger
+            'handlers': ['file', 'console'],
+            'level': 'INFO',
+        },
+
+        # ALLOWED_HOSTS alarm disable
+        'django.security.DisallowedHost': {
+            'handler': ['null'],
+            'propagate': False,
+        }
+    }
+}
