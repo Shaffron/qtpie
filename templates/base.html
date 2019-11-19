@@ -31,29 +31,29 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">QTPIE</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#page-top">주제</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#word">말씀</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#contemplation">묵상</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#guide">길잡이</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#pray">기도</a>
-                </li>
-            </ul>
-        </div>
+        <a class="navbar-brand js-scroll-trigger" href="/contemplate/">QTPIE</a>
+{#        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">#}
+{#            <span class="navbar-toggler-icon"></span>#}
+{#        </button>#}
+{#        <div class="collapse navbar-collapse" id="navbarResponsive">#}
+{#            <ul class="navbar-nav ml-auto my-2 my-lg-0">#}
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link js-scroll-trigger" href="#">주제</a>#}
+{#                </li>#}
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link js-scroll-trigger" href="#">말씀</a>#}
+{#                </li>#}
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link js-scroll-trigger" href="#">묵상</a>#}
+{#                </li>#}
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link js-scroll-trigger" href="#">길잡이</a>#}
+{#                </li>#}
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link js-scroll-trigger" href="#">기도</a>#}
+{#                </li>#}
+{#            </ul>#}
+{#        </div>#}
     </div>
 </nav>
 
@@ -77,8 +77,8 @@
 <script src="{% static 'core/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
 <script src="{% static 'core/vendor/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
 
-<!-- Custom scripts for this template -->
-<script src="{% static 'core/js/creative.min.js' %}"></script>
+<!-- Custom scripts for this template -->`
+<script src="{% static 'core/js/creative.min.js' %}?{{ settings.STATICFILES_VERSION }}"></script>
 
 {% block js %}
 {% endblock %}
