@@ -90,6 +90,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django_settings_export.settings_export',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -161,9 +162,7 @@ SETTINGS_EXPORT = [
 ]
 
 # About OAuth
-SITE_ID = 1
-
-LOGIN_REDIRECT_URL = '/'
+SITE_ID = 2
 
 LOGGING = {
     'version': 1,
