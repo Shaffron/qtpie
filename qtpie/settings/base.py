@@ -37,10 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 ]
 
 MY_APPS = [
-    'account',
     'contemplate',
     'core',
 ]
@@ -49,7 +49,15 @@ THIRD_PARTY_APPS = [
     'django_crontab',
 ]
 
-INSTALLED_APPS += MY_APPS + THIRD_PARTY_APPS
+OAUTH_APPS = [
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.naver',
+]
+
+INSTALLED_APPS += (MY_APPS + THIRD_PARTY_APPS + OAUTH_APPS)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -59,6 +67,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+AUTHENTICATION_BACKENDS = [
+    # Default
+    'django.contrib.auth.backends.ModelBackend',
+    # OAuth
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 ROOT_URLCONF = 'qtpie.urls'
@@ -144,6 +159,11 @@ CRONJOBS = [
 SETTINGS_EXPORT = [
     'STATICFILES_VERSION',
 ]
+
+# About OAuth
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/'
 
 LOGGING = {
     'version': 1,

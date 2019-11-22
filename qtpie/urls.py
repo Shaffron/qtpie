@@ -8,5 +8,6 @@ from django.views.generic import RedirectView
 urlpatterns = [
     path('', RedirectView.as_view(url='contemplate/')),
     path('admin/', admin.site.urls),
-    path('contemplate/', include('contemplate.urls'))
+    path('contemplate/', include('contemplate.urls')),
+    path('accounts/', include('allauth.urls')),
 ]
