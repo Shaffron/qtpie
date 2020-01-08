@@ -1,5 +1,7 @@
 import logging
 
+from django.db import transaction
+
 from core.crawler import QTCrawler
 from core.models import (
     Annotation,
@@ -12,6 +14,7 @@ from core.models import (
 logger = logging.getLogger(__name__)
 
 
+@transaction.atomic
 def daily_crawling():
     crawler = QTCrawler()
     payload = crawler.serialize()
@@ -22,8 +25,7 @@ def daily_crawling():
             subject=payload['subject'],
             paragraph=(
                 f'{payload["page"]["book"]} '
-                f'{payload["page"]["chapter"]}장 '
-                f'{payload["page"]["start"]}~{payload["page"]["end"]}절'
+                f'{payload["page"]["start"]}~{payload["page"]["end"]}'
             ),
             guide=payload['guide']
         )
