@@ -7,7 +7,6 @@ from bs4 import BeautifulSoup
 class QTCrawler:
     URL = 'http://www.365qt.com/TodaysQT.asp'
 
-
     @classmethod
     def get_html(cls):
         response = requests.get(cls.URL)
@@ -68,12 +67,15 @@ class QTCrawler:
         )
 
         book, cv = payload.split(' ')
-        chapter, verses = cv.split(':')
-        start, end = verses.split('~')
+        start, end = cv.split('~')
+
+        # 본문말씀이 두 장으로 나누어지는 경우
+        if ':' in start and ':' not in end:
+            chapter, *_ = start.split(':')
+            end = f'{chapter}:{end}'
 
         page = {
             'book': book,
-            'chapter': chapter,
             'start': start,
             'end': end
         }
@@ -98,15 +100,18 @@ class QTCrawler:
         return words
 
     def _parse_annotation(self, body):
-        context = (
+        annotations = (
             body
             .find('div', {'class': 'script'})
-            .select('ul li')
-            .pop()
-            .get_text()
+            .find('ul')
+            .find('li')
+            .select('b')
         )
 
-        payload = context.splitlines()
+        payload = list()
+        for annotation in annotations:
+            key, message = list(annotation.next_elements)[:2]
+            payload.append(f'[ {key} ] {message}')
 
         return payload
 
@@ -126,7 +131,7 @@ class QTCrawler:
             span.decompose()
 
         # 숫자를 prefix로 가지는 문장들로 분리
-        processed = re.split(r'(\d.+)', context.get_text())
+        processed = re.split(r'(\d\.\s)', context.get_text())
 
         contemplation = list()
         for praise in processed:
