@@ -45,9 +45,7 @@ MY_APPS = [
     'core',
 ]
 
-THIRD_PARTY_APPS = [
-    'django_crontab',
-]
+THIRD_PARTY_APPS = []
 
 INSTALLED_APPS += MY_APPS + THIRD_PARTY_APPS
 
@@ -86,12 +84,8 @@ WSGI_APPLICATION = 'qtpie.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': get_env_variable('DEFAULT_DB_NAME'),
-        'USER': get_env_variable('DEFAULT_DB_USER'),
-        'PASSWORD': get_env_variable('DEFAULT_DB_PASSWORD'),
-        'HOST': get_env_variable('DEFAULT_DB_HOST'),
-        'PORT': get_env_variable('DEFAULT_DB_PORT')
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': ':memory:',
     }
 }
 
@@ -133,12 +127,6 @@ STATICFILES_VERSION = get_env_variable('STATICFILES_VERSION')
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = 'media'
-
-# Crontab
-CRONJOBS = [
-    # crawling at monday ~ saturday 00:05 AM
-    ('5 0 * * 1-6', 'core.cron.daily_crawling'),
-]
 
 # Export settings for template
 SETTINGS_EXPORT = [
